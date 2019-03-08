@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% import "projects/_helpers.html" as helper %}
+{% import "account/_helpers.html" as account_helper %}
+{% block content %}
+<section class="home featured">
+    <div class="jumbotron">
+        <div class="container-fluid text-center">
+          <div class="find">
+<h3 class="find-text" style="color: #546e7a;">Find a language you can write in, and help researchers by translating sentences.</h3>
+            <a href="/project/category/featured/" class="btn btn-primary uppercase">Find a Project</a>
+          </div>
+            <!-- {% if featured | count > 0 %} -->
+            <!-- {% set featured_project = featured | random %} -->
+            <!-- <h1>{{ featured_project.name }}</h1> -->
+            <!-- <p>{{ featured_project.description }}</p> -->
+            <!-- <a class="btn btn-primary" href="{{ url_for('project.details', short_name=featured_project.short_name)}}">{{_('Contribute')}}</a> -->
+            <!-- {% else %} -->
+            <!-- <h1>{{_('Welcome to ')}} {{brand}}</h1> -->
+            <!-- <p>{{_("The most active translation community, helping you develop machine translation and image captioning datasets for African languages, based on the MS-COCO 2015 challenge.")}}</p> -->
+            <!-- {% endif %} -->
+        </div>
+    </div>
+</section>
+{% if historical_contributions %}
+{{ helper.render_grid_projects(historical_contributions, 'Historical Contributions', upload_method, current_user, section_class='home projects', title_size='2') }}
+{% endif %}
+{% if featured %}
+{{ helper.render_grid_projects(featured, 'Featured Projects', upload_method, current_user, section_class='home projects', readmore_text='Contribute', title_size='2') }}
+{% endif %}
+{% endblock %}

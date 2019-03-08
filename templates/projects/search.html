@@ -1,0 +1,27 @@
+{% set active_page = "projects" %}
+
+{% import "projects/_helpers.html" as helper %}
+{% import "account/_helpers.html" as helper_account %}
+
+<div class="row">
+    <form class="form-search" method="POST">
+        {{ form.hidden_tag() }}
+        <div class="col-md-12">
+            <div class="input-group">
+                <input id="user" name="user" type="text" class="form-control" placeholder="Search user by nick name">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-primary "><i class="fa fa-search"></i> {{ _('Search') }}</button>
+                </span>
+            </div>
+        </div>
+    </form>
+</div>
+{% if found %}
+<h2>{{ _('Users') }}</h2>
+<p><em>{{ _('Users that can be added as co-owners to the project') }}</em></p>
+<div class="row">
+<div class="col-sm-4 col-md-4">
+{{ render_project_card_coowner(project.short_name, found, upload_method, background=True, is_coowner=found.is_coowner, is_creator=found.is_creator)}}
+</div>
+</div>
+{% endif %}
